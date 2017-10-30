@@ -1,0 +1,27 @@
+var arr2 = [11,11,11,11];
+function qsort(arr) {
+    let temp = arr[0];
+    let small = [];
+    let large = [];
+    let center = [];
+    if(arr.length <= 1) {
+        return arr;
+    }
+    if(arr.length == 2 && arr[0] >= arr[1]){
+           let a = arr[0];
+           arr[0] = arr[1];
+           arr[1] = a;
+           return arr;
+        }
+    for(let i = 0; i < arr.length; i++) {
+        if (temp > arr[i]) {
+            small.push(arr[i]);
+        } else if (temp < arr[i]) {
+            large.push(arr[i]);
+        } else {
+            center.push(arr[i]);
+        }
+    }
+    return qsort(small).concat(center, qsort(large));
+}
+qsort(array);
