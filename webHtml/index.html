@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>err img</title>
+</head>
+<body>
+    <img src="./1.jpg" alt="">
+    <img src="./iconff.png" alt="" onerror= err(this)>
+</body>
+<script>
+    function err(e){
+        let self = e;
+        // "onerror=null;src='default.png'"
+        // 避免默认图片也不存在时死循环
+        self.onerror = null;
+        self.src = 'default.png';
+    }
+</script>
+</html>
