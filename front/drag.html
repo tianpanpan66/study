@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<style>
+  #drag {
+    width: 30px;
+    height: 30px;
+    position: relative;
+    background: red;
+  }
+</style>
+
+<body>
+  <div id='drag' style="left:0;top:0"></div>
+</body>
+<script>
+  const drag = document.getElementById('drag');
+  drag.addEventListener('mousedown', function (e) {
+    drag.startPos = {
+      x: e.clientX,
+      y: e.clientY
+    };
+    document.addEventListener('mousemove', moveMove);
+  });
+  document.addEventListener('mouseup', function () {
+    document.removeEventListener('mousemove', moveMove)
+  })
+
+  function moveMove(e) {
+    let position = getPosition(drag);
+    let deltaX = e.clientX - drag.startPos.x;
+    let deltaY = e.clientY - drag.startPos.y;
+    drag.style.left = position.x + deltaX + 'px';
+    drag.style.top = position.y + deltaY + 'px';
+    drag.startPos = {x: e.clientX, y:e.clientY};
+   }
+
+  function getPosition(div) {
+    return {
+      x: parseFloat(div.style.left.replace('px')),
+      y: parseFloat(div.style.top.replace('px')),
+    };
+  }
+</script>
+
+</html>
