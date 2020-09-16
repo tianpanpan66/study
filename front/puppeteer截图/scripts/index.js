@@ -21,7 +21,7 @@ const puppeteer = require('puppeteer');
   
   // 业务代码中设定window中的对象，存在表示加载完成
   await page.waitForFunction('window.coverDataLoaded', {
-    polling: 500
+    polling: 1000
   });
   await page.screenshot({ path: 'example.png' });
   await browser.close();

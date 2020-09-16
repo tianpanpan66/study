@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <canvas id='myCanvas'></canvas>
+</body>
+<script>
+
+  window.onload = () => {
+    var c=document.getElementById("myCanvas");
+    var ctx=c.getContext("2d");
+    var start = -90;
+    var count = 1;
+    const step = 360 / 30;
+    const x= 100;
+    const y = 75;
+    const CountAll = 31;
+  
+  function drawCirle(x,y,start, end){
+    if(ctx){
+      ctx.beginPath();
+      ctx.moveTo(x,y);
+      ctx.arc(x, y, 50, start, end);
+      ctx.fillStyle="green";
+      ctx.fill();
+      ctx.closePath();
+    }
+  }
+
+  const timer = setInterval(() => {
+     end = start + (step * count) ;
+     count ++;
+     if(count <= CountAll){
+      drawCirle( x, y, start * Math.PI / 180, end * Math.PI / 180);
+     } else {
+      clearInterval(timer)
+     }
+  }, 1000);
+  }
+  
+  </script>
+</html>
